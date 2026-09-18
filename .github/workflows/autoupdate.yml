@@ -31,7 +31,6 @@ jobs:
         uses: Homebrew/actions/git-user-config@main
         with:
           username: "fladder-bot[bot]"
-          email: "fladder-bot[bot]@users.noreply.github.com"
 
       - name: Bump casks
         uses: Homebrew/actions/bump-packages@main
