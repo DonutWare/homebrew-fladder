@@ -12,21 +12,32 @@ jobs:
   autobump:
     runs-on: macos-latest
     steps:
+      - name: Generate Bot Token
+        id: generate-token
+        uses: actions/create-github-app-token@v3.1.1
+        with:
+          app-id: ${{ secrets.FLADDER_BOT_APP_ID }}
+          private-key: ${{ secrets.FLADDER_BOT_APP_PRIVATE_KEY }}
+
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@main
         with:
           core: false
           cask: true
+          token: ${{ steps.generate-token.outputs.token }}
 
       - name: Configure Git user
         uses: Homebrew/actions/git-user-config@main
+        with:
+          username: "fladder-bot[bot]"
+          email: "fladder-bot[bot]@users.noreply.github.com"
 
       - name: Bump casks
         uses: Homebrew/actions/bump-packages@main
         continue-on-error: true
         with:
-          token: ${{ secrets.HOMEBREW_CASK_REPO_WORKFLOW_TOKEN }}
+          token: ${{ steps.generate-token.outputs.token }}
           casks: "fladder"
         env:
           HOMEBREW_TEST_BOT_AUTOBUMP: 1
