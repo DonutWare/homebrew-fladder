@@ -38,6 +38,7 @@ jobs:
         with:
           token: ${{ steps.generate-token.outputs.token }}
           casks: "fladder"
+          fork: false
         env:
           HOMEBREW_TEST_BOT_AUTOBUMP: 1
   workflow-keepalive:
