@@ -1,6 +1,6 @@
 cask "fladder" do
-  version "0.11.1"
-  sha256 "db7f93e833a14afabb71032a0664c831c567128d5b60c6accc402775065efe51"
+  version "0.12.1"
+  sha256 "468f095d5e12c0950766f478df789207cade4ab62db3f005b2bcd448a7920f8e"
 
   url "https://github.com/DonutWare/Fladder/releases/download/v#{version}/Fladder-macOS-#{version}.dmg"
   name "fladder"
@@ -12,7 +12,7 @@ cask "fladder" do
     strategy :github_latest
   end
 
-  depends_on :macos
+  depends_on macos: :monterey
 
   app "Fladder.app"
 
